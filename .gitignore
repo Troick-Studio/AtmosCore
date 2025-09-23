@@ -7,3 +7,6 @@
 
 # Troick Files
 /--OldSrc
+/Files
+
+.gitignore
