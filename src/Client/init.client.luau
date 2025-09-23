@@ -5,7 +5,6 @@ local GraphicsUI = PlayerGui:WaitForChild("GraphicsUI")
 
 AtmosCore.Init()
   
-
 AtmosCore.OnTimeChanged:Connect(function(Time)
     local hours = math.floor(Time / 60)
     local minutes = Time % 60

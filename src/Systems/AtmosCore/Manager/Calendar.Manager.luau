@@ -2,7 +2,7 @@
 local CalendarManager = {}
 CalendarManager.Advance = {}
 ------------------- Requires -----------------
-local CalendarController = require(script.Parent.Parent.Domains.Calendar["Calendar.Controller"])
+-- local CalendarController = require(script.Parent.Parent.Domains.Calendar["Calendar.Controller"])
 local CalendarService = require(script.Parent.Parent.Domains.Calendar["Calendar.Service"])
 local CalendarModel = require(script.Parent.Parent.Domains.Calendar["Calendar.Model"])
 local RunService = game:GetService("RunService")
@@ -15,17 +15,22 @@ CalendarManager.Init = function(Data)
         CalendarModel.Date.Day = Data.Day
         CalendarModel.Date.Month = Data.Month
         CalendarModel.Date.Year = Data.Year
-        print(CalendarModel.Date)
+        CalendarModel.Date.Season = CalendarModel.GetSeason()
     end
 end
 
 CalendarManager.Advance.Day = function()
-    if RunService:IsClient() then
-        CalendarController.Advance.Day()
-    else
+    if not RunService:IsClient() then
         CalendarService.Advance.Day()
     end
 end
+
+CalendarManager.Bindable = {
+    OnDay = CalendarService.OnDay,
+    OnMonth = CalendarService.OnMonth,
+    OnYear = CalendarService.OnYear,
+    OnSeason = CalendarService.OnSeason
+}
 
 ------------------ Retornos ------------------
 return CalendarManager

@@ -1,12 +1,11 @@
 ------------------- Inicio -------------------
-local CalendarController = {}
-CalendarController.Advance = {}
+local VisualsModel = {}
 ------------------- Requires -----------------
--- local CalendarModel = require(script.Parent["Calendar.Model"])
+
 ------------------ Variáveis -----------------
 
-------------------- Funções ------------------
+VisualsModel.Enabled = true
 
 ------------------ Retornos ------------------
-return CalendarController
+return VisualsModel
 ----------------------------------------------

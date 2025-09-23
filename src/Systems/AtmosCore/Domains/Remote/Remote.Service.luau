@@ -14,7 +14,6 @@ RemoteService.Init = function()
     end)
 
     EventsManager.OnServer("ReSync", function(Player)
-        print("Enviando horario do servidor atual:", CycleModel.Clock.MinutesAfterMidnight)
         return CycleModel.Clock.MinutesAfterMidnight
     end)
 end

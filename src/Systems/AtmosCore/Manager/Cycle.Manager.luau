@@ -40,7 +40,6 @@ local CycleSource = if RunService:IsClient() then CycleController else CycleServ
 CycleManager.Bindable = {
     OnNight = CycleSource.OnNight,
     OnSunrise = CycleSource.OnSunrise,
-    OnDay = CycleSource.OnDay,
     OnTimeChanged = CycleSource.OnTimeChanged
 }
 

@@ -3,16 +3,14 @@ local CycleController = {}
 ------------------- Requires -----------------
 local CycleModel = require(script.Parent["Cycle.Model"])
 local LoopManager = require(script.Parent.Parent.Parent.Manager["Loop.Manager"])
--- local CalendarManager = require(script.Parent.Parent.Parent.Manager["Calendar.Manager"])
-local CalendarModel = require(script.Parent.Parent.Calendar["Calendar.Model"])
+local MoonManager = require(script.Parent.Parent.Parent.Manager["Moon.Manager"])
+local VisualsController = require(script.Parent.Parent.Visuals["Visuals.Controller"])
 ------------------ Variáveis -----------------
 local Lighting = game:GetService("Lighting")
 local Synced = false
-local NightTriggered = false
 
 local OnNight = Instance.new("BindableEvent")
 local OnSunrise = Instance.new("BindableEvent")
-local OnDay = Instance.new("BindableEvent")
 local OnTimeChanged = Instance.new("BindableEvent") 
 ------------------- Funções ------------------
 
@@ -37,27 +35,30 @@ function CycleDayAndNight()
         CycleModel.CycleVariables.Value = (CycleModel.Clock.MinutesAfterMidnight + 0.1 * CycleModel.CycleVariables.Speed)
         if CycleModel.CycleVariables.Value / 60 >= 24 then
             CycleModel.CycleVariables.Value = CycleModel.CycleVariables.Value % CycleModel.CycleVariables.CycleLength
-            OnDay:Fire()
-            print(CalendarModel.Date)
         end
-        
-        if CycleModel.CycleVariables.Value / 60 >= 17.9 and CycleModel.CycleVariables.Value / 60 <= 18.9 and not NightTriggered then
-            NightTriggered = true
+
+        if CycleModel.CycleVariables.Value / 60 >= 17 and CycleModel.CycleVariables.Value / 60 <= 18 and not CycleModel.MoonChange then
+            Lighting.Sky.MoonTextureId = MoonManager.Phase().Texture
+            CycleModel.MoonChange = true
+        elseif CycleModel.CycleVariables.Value / 60 >= 17.9 and CycleModel.CycleVariables.Value / 60 <= 18.9 and not CycleModel.NightTriggered then
+            CycleModel.NightTriggered = true
             OnNight:Fire()
-        elseif CycleModel.CycleVariables.Value / 60 >= 5.9 and CycleModel.CycleVariables.Value / 60 <= 6.9 and NightTriggered then
-            NightTriggered = false
+        elseif CycleModel.CycleVariables.Value / 60 >= 6.5 and CycleModel.CycleVariables.Value / 60 <= 7.5 and CycleModel.NightTriggered then
+            CycleModel.NightTriggered = false
+            CycleModel.MoonChange = false
             OnSunrise:Fire()
         end
 
         OnTimeChanged:Fire(CycleModel.CycleVariables.Value)
         Lighting:SetMinutesAfterMidnight(CycleModel.CycleVariables.Value)
         CycleModel.Clock.MinutesAfterMidnight = CycleModel.CycleVariables.Value
+
+        VisualsController.Start(CycleModel.Clock.MinutesAfterMidnight)
     end
 end
 
 CycleController.OnNight = OnNight.Event
 CycleController.OnSunrise = OnSunrise.Event
-CycleController.OnDay = OnDay.Event
 CycleController.OnTimeChanged = OnTimeChanged.Event
 
 ------------------ Retornos ------------------

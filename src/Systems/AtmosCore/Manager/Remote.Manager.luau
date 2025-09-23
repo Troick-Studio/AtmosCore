@@ -11,6 +11,7 @@ local RunService = game:GetService("RunService")
 
 RemoteManager.Init = function()
     EventsManager.CreateEvents({ Name = "Sync", Type = "RemoteEvent" })
+    EventsManager.CreateEvents({ Name = "SyncSettings", Type = "RemoteEvent" })
     EventsManager.CreateEvents({ Name = "SyncDate", Type = "RemoteEvent" })
     EventsManager.CreateEvents({ Name = "ToggleTime", Type = "RemoteEvent" })
     EventsManager.CreateEvents({ Name = "ReSync", Type = "RemoteFunction" })

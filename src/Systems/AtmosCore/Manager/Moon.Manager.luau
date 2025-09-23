@@ -1,12 +1,15 @@
 ------------------- Inicio -------------------
-local CalendarController = {}
-CalendarController.Advance = {}
+local MoonManager = {}
 ------------------- Requires -----------------
--- local CalendarModel = require(script.Parent["Calendar.Model"])
+local MoonController = require(script.Parent.Parent.Domains.Moon["Moon.Controller"])
 ------------------ Variáveis -----------------
 
 ------------------- Funções ------------------
 
+MoonManager.Phase = function()
+    return MoonController.MoonPhase()
+end
+
 ------------------ Retornos ------------------
-return CalendarController
+return MoonManager
 ----------------------------------------------

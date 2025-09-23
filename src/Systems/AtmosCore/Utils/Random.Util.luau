@@ -1,26 +1,21 @@
 ------------------- Inicio -------------------
 local RandomUtil = {}
 ------------------- Requires -----------------
-
+local GlobalConfigs = require(script.Parent.Parent["Global.Configs"])
 ------------------ Variáveis -----------------
 
 ------------------- Funções ------------------
 
-function RandomUtil.Generate()
+RandomUtil.Generate = function()
 	local seedGenerated = math.random(10000, 99999999)
 	return seedGenerated
 end
 
-function RandomUtil.GetRNG(Seed, key, secret)
+RandomUtil.GetRNG = function(key, secret)
 	local Key = key or 0
 	local Secret = secret or ""
-	return Random.new(tonumber(Seed + Key .. Secret))
+	return Random.new(tonumber(GlobalConfigs.Seed + Key .. Secret))
 end
-
-RandomUtil.Lerp = {
-	Number = function(a, b, t) return a + (b - a) * t end,
-	Color = function(c1, c2, t) return c1:Lerp(c2, t) end,
-}
 
 ------------------ Retornos ------------------
 return RandomUtil

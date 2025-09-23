@@ -1,12 +1,13 @@
 ------------------- Inicio -------------------
-local CalendarController = {}
-CalendarController.Advance = {}
+local GlobalConfigs = {}
 ------------------- Requires -----------------
--- local CalendarModel = require(script.Parent["Calendar.Model"])
+
 ------------------ Variáveis -----------------
 
 ------------------- Funções ------------------
 
+GlobalConfigs.Seed = nil
+
 ------------------ Retornos ------------------
-return CalendarController
+return GlobalConfigs
 ----------------------------------------------

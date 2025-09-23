@@ -6,6 +6,8 @@ local RunService = game:GetService("RunService")
 ------------------ Variáveis -----------------
 
 CycleModel.Enabled = true
+CycleModel.NightTriggered = false
+CycleModel.MoonChange = false
 
 CycleModel.Duration = {
 	LengthOfDayInMinutes = 1,
