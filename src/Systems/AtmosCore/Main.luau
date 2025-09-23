@@ -9,6 +9,7 @@ local RemoteManager = require(script.Parent.Manager["Remote.Manager"])
 local EventsManager = require(script.Parent.Manager["Events.Manager"])
 local CalendarModel = require(script.Parent.Domains.Calendar["Calendar.Model"])
 local CycleModel = require(script.Parent.Domains.Cycle["Cycle.Model"])
+local CloudsManager = require(script.Parent.Manager["Clouds.Manager"])
 local RunService = game:GetService("RunService")
 local GlobalConfigs = require(script.Parent["Global.Configs"])
 ------------------ Variáveis ----------------
@@ -22,6 +23,9 @@ Main.Init = function(data)
     LoopManager.Init()
     CalendarManager.Init(Data)
 
+    if RunService:IsClient() then
+        CloudsManager.Init()
+    end
     if RunService:IsServer() then
         local Funcs = {}
 
@@ -36,7 +40,7 @@ Main.Init = function(data)
                 if name == "Seed" then
                     GlobalConfigs.Seed = value
                 elseif name == "LengthOfDayInMinutes" then
-                    CycleModel.Duration.LengthOfDayInMinutes = value
+                    CycleModel.Duration.LengthOfDayInMinutes = value <= 0.1 and 1 or value
                     CycleModel.CycleVariables.Speed = 1440 / (value * 60)
                 end
             end
@@ -49,13 +53,9 @@ Main.Init = function(data)
     return nil
 end
 
-Main.Command.Time = function(Command, CommandValue)
-    return CycleManager.Command(Command, CommandValue)
-end
+Main.Command.Time = function(Command, CommandValue) return CycleManager.Command(Command, CommandValue) end
 
-Main.Sync = function(Player)
-    CycleManager.Sync(Player)
-end
+Main.Sync = function(Player) CycleManager.Sync(Player) end
 
 ------------------- Eventos ------------------
 

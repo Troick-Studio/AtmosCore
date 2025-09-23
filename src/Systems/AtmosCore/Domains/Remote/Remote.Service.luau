@@ -9,13 +9,8 @@ local CycleModel = require(script.Parent.Parent.Parent.Domains.Cycle["Cycle.Mode
 ------------------- Funções ------------------
 
 RemoteService.Init = function() 
-    EventsManager.OnServer("ToggleTime", function(Data)
-        CycleController.Sync(Data)
-    end)
-
-    EventsManager.OnServer("ReSync", function(Player)
-        return CycleModel.Clock.MinutesAfterMidnight
-    end)
+    EventsManager.OnServer("ToggleTime", function(Data) CycleController.Sync(Data) end)
+    EventsManager.OnServer("ReSync", function(Player) return CycleModel.Clock.MinutesAfterMidnight end)
 end
 
 ------------------ Retornos ------------------

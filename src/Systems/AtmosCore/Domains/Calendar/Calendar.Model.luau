@@ -31,36 +31,30 @@ CalendarModel.Month.Names = {
     "December"
 }
 
-CalendarModel.Month.GetName = function()
-	return CalendarModel.Month.Names[CalendarModel.Date.Month]
-end
+CalendarModel.Month.GetName = function() return CalendarModel.Month.Names[CalendarModel.Date.Month] end
 
 CalendarModel.Seasons = {
 	{
 		Name = "Spring",
 		Months = {3, 4, 5},
-		Description = "A estação das flores, clima ameno, árvores florescendo e clima ideal para plantar.",
 		WeatherChances = {Sunny = 50, Rain = 25, Storm = 10, Wind = 15},
 		BaseTemperature = 15
 	},
 	{
 		Name = "Summer",
 		Months = {6, 7, 8},
-		Description = "Dias quentes e longos, perfeitos para culturas tropicais.",
 		WeatherChances = {Sunny = 60, Rain = 15, Storm = 10, Wind = 15},
 		BaseTemperature = 25
 	},
 	{
 		Name = "Autumn",
 		Months = {9, 10, 11},
-		Description = "As folhas mudam de cor e o clima fica mais fresco.",
 		WeatherChances = {Sunny = 40, Rain = 30, Storm = 10, Wind = 20},
 		BaseTemperature = 15
 	},
 	{
 		Name = "Winter",
 		Months = {12, 1, 2},
-		Description = "Frio intenso, neve e noites mais longas.",
 		WeatherChances = {Sunny = 25, Rain = 15, Snow = 35, Storm = 10, Wind = 15},
 		BaseTemperature = 0
 	}

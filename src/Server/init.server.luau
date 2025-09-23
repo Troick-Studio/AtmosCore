@@ -1,7 +1,7 @@
 local AtmosCore = require(game:GetService("ReplicatedStorage").Systems.AtmosCore.Main)
 
 AtmosCore.Init({
-    Year = 2023, Month = 1, Day = 25, Time = 16
+    Year = 2023, Month = 1, Day = 25, Time = 9
 }).Features({
 	MoonPhase = false,
 	DayAndNightCycle = true

@@ -20,9 +20,7 @@ CalendarManager.Init = function(Data)
 end
 
 CalendarManager.Advance.Day = function()
-    if not RunService:IsClient() then
-        CalendarService.Advance.Day()
-    end
+    if not RunService:IsClient() then CalendarService.Advance.Day() end
 end
 
 CalendarManager.Bindable = {

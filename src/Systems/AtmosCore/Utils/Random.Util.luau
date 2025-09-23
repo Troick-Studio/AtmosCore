@@ -14,6 +14,9 @@ end
 RandomUtil.GetRNG = function(key, secret)
 	local Key = key or 0
 	local Secret = secret or ""
+
+	repeat task.wait() until GlobalConfigs.Seed ~= nil
+	
 	return Random.new(tonumber(GlobalConfigs.Seed + Key .. Secret))
 end
 

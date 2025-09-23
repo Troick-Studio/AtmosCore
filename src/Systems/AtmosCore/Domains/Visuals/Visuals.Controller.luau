@@ -10,6 +10,8 @@ Lighting = game:GetService("Lighting")
 local Graphics = VisualsConfigs.Graphics.Realistic
 ------------------- Funções ------------------
 
+-- Reutilização de codigo antigo*
+
 VisualsController.Start = function(time)
     if VisualsModel.Enabled then
         local States = GetDayState(time/60)

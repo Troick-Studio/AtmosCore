@@ -11,13 +11,8 @@ local GlobalConfigs = require(script.Parent.Parent.Parent["Global.Configs"])
 ------------------- Funções ------------------
 
 RemoteController.Init = function() 
-    EventsManager.OnClient("Sync", function(Data)
-        CycleController.Sync(Data)
-    end)
-
-    EventsManager.OnClient("SyncDate", function(Date)
-        CalendarModel.Date = Date
-    end)
+    EventsManager.OnClient("Sync", function(Data) CycleController.Sync(Data) end)
+    EventsManager.OnClient("SyncDate", function(Date) CalendarModel.Date = Date end)
 
     EventsManager.OnClient("SyncSettings", function(Data) 
         for name, value in pairs(Data) do
