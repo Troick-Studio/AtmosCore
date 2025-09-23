@@ -8,10 +8,6 @@ local CycleController = require(script.Parent.Parent.Domains.Cycle["Cycle.Contro
 
 ------------------- Funções ------------------
 
---[[
-    Inicia o loop do dia e noite
-    @param Date {Year: number, Month: number, Day: number, Time: number}
-]]
 CycleManager.Init = function(Date)
     Date = Date or nil
     if RunService:IsClient() then

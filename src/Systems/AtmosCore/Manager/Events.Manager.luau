@@ -6,8 +6,10 @@ local EventsManager = {}
 local RemoteFile = script.Parent.Parent.Remotes
 ------------------- Funções ------------------
 
--- Cria RemoteEvent ou RemoteFunction
-EventsManager.CreateEvents = function(Data)
+--[[
+    Cria RemoteEvent ou RemoteFunction com base no nome recebido e tipo
+]]
+EventsManager.CreateEvents = function(Data : {Name : string, Type : "RemoteFunction" | "RemoteEvent"})
     local NewRemote = RemoteFile:FindFirstChild(Data.Name)
     if not NewRemote then
         NewRemote = Instance.new(Data.Type)
@@ -17,8 +19,10 @@ EventsManager.CreateEvents = function(Data)
     return NewRemote
 end
 
--- Registra callback no Server (RemoteEvent)
-EventsManager.OnServer = function(Name, Callback)
+--[[
+    Registra o callback recebido no Server (RemoteEvent)
+]]
+EventsManager.OnServer = function(Name : string, Callback : (any) -> ())
     local Remote = RemoteFile:FindFirstChild(Name)
     if Remote then
         if Remote:IsA("RemoteEvent") then
@@ -33,8 +37,10 @@ EventsManager.OnServer = function(Name, Callback)
     end
 end
 
--- Registra callback no Client (RemoteEvent)
-EventsManager.OnClient = function(Name, Callback)
+--[[
+    Registra o callback recebido no Client (RemoteEvent)
+]]
+EventsManager.OnClient = function(Name : string, Callback : (any) -> ())
     local Remote = RemoteFile:WaitForChild(Name)
     if Remote then
         if Remote:IsA("RemoteEvent") then
@@ -49,32 +55,41 @@ EventsManager.OnClient = function(Name, Callback)
     end
 end
 
--- Dispara para um Client específico (RemoteEvent)
-EventsManager.FireClient = function(Player, Name, ...)
+--[[
+    Dispara para um Client específico o callback registrado na quele Remote Event (RemoteEvent)
+]]
+EventsManager.FireClient = function(Player : Player, Name : string, ... : any)
     local Remote = RemoteFile:FindFirstChild(Name)
     if Remote and Remote:IsA("RemoteEvent") then
         Remote:FireClient(Player, ...)
     end
 end
 
--- Dispara para todos os Clients (RemoteEvent)
-EventsManager.FireAllClients = function(Name, ...)
+--[[
+    Dispara para todos os Clients o callback registrado na quele Remote Event (RemoteEvent)
+]]
+EventsManager.FireAllClients = function(Name : string, ... : any)
     local Remote = RemoteFile:FindFirstChild(Name)
     if Remote and Remote:IsA("RemoteEvent") then
         Remote:FireAllClients(...)
     end
 end
 
--- Dispara do Client para o Server (RemoteEvent)
-EventsManager.FireServer = function(Name, ...)
+--[[
+    Dispara do Client para o Server, executando o callback registrado na quele Remote Event (RemoteEvent)
+]]
+EventsManager.FireServer = function(Name : string, ... : any)
     local Remote = RemoteFile:FindFirstChild(Name)
     if Remote and Remote:IsA("RemoteEvent") then
         Remote:FireServer(...)
     end
 end
 
--- Invoca RemoteFunction no Server a partir do Client
-EventsManager.InvokeServer = function(Name, ...)
+
+--[[
+    Invoca RemoteFunction no Server a partir do Client (RemoteFunction)
+]]
+EventsManager.InvokeServer = function(Name : string, ... : any)
     local Remote = RemoteFile:FindFirstChild(Name)
     if Remote and Remote:IsA("RemoteFunction") then
         return Remote:InvokeServer(...)
@@ -82,8 +97,10 @@ EventsManager.InvokeServer = function(Name, ...)
     return nil
 end
 
--- Invoca RemoteFunction no Client a partir do Server
-EventsManager.InvokeClient = function(Player, Name, ...)
+--[[
+    Invoca RemoteFunction no Client a partir do Server (RemoteFunction)
+]]
+EventsManager.InvokeClient = function(Player : Player, Name : string, ... : any)
     local Remote = RemoteFile:FindFirstChild(Name)
     if Remote and Remote:IsA("RemoteFunction") then
         return Remote:InvokeClient(Player, ...)
