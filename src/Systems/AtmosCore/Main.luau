@@ -37,7 +37,6 @@ type SettingsData = {LengthOfDayInMinutes : number?, Seed : number?, InitYear : 
 ]]
 Main.Init = function(data : InitData?)
     local Data = data or {Day = 1, Month = 1, Year = 1, Time = 9}
-    print(Data)
     RemoteManager.Init()
     CycleManager.Init(Data)
     LoopManager.Init()
@@ -51,7 +50,6 @@ Main.Init = function(data : InitData?)
 
         Funcs.Features = function(featuresSettings : FeaturesData)
             for name, value in pairs(featuresSettings) do 
-                print(name, value) 
                 if name == "BetterVisuals" then
                     VisualsModel.Enabled = value
                 elseif name == "DayAndNightCycle" then

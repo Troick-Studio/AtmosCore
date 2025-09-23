@@ -51,7 +51,6 @@ CloudsController.Dynamic = function()
 
             startDensity = oldCloudDensity  
             DynamicStart = true
-            print(Delay, Duration, cloudDensity, Delay + Duration)
         end
         
 

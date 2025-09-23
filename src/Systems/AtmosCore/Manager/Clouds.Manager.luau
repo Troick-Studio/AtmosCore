@@ -9,7 +9,6 @@ local LoopManager = require(script.Parent["Loop.Manager"])
 ------------------- Funções ------------------
 
 CloudsManager.Init = function()
-    print("Cloud Init")
     CloudsController.Dynamic()
     LoopManager.Add(function()
         CloudsController.Start()
