@@ -3,7 +3,7 @@ local VisualsController = {}
 ------------------- Requires -----------------
 -- local LoopManager = require(script.Parent.Parent.Parent.Manager["Loop.Manager"])
 local VisualsConfigs = require(script.Parent["Visuals.Configs"])
-local VisualsModel = require(script.Parent["Visuals.Modal"])
+local VisualsModel = require(script.Parent["Visuals.Model"])
 local Utils = require(script.Parent.Parent.Parent.Utils.Util) 
 ------------------ Variáveis -----------------
 Lighting = game:GetService("Lighting")

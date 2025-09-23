@@ -8,6 +8,7 @@ local LoopManager = require(script.Parent.Manager["Loop.Manager"])
 local RemoteManager = require(script.Parent.Manager["Remote.Manager"])
 local EventsManager = require(script.Parent.Manager["Events.Manager"])
 local CalendarModel = require(script.Parent.Domains.Calendar["Calendar.Model"])
+local VisualsModel = require(script.Parent.Domains.Visuals["Visuals.Model"])
 local CycleModel = require(script.Parent.Domains.Cycle["Cycle.Model"])
 local CloudsManager = require(script.Parent.Manager["Clouds.Manager"])
 local RunService = game:GetService("RunService")
@@ -43,14 +44,20 @@ Main.Init = function(data : InitData)
         local Funcs = {}
 
         Funcs.Features = function(featuresSettings : FeaturesData)
-            -- for name, value in pairs(featuresSettings) do print(name, value) end
+            for name, value in pairs(featuresSettings) do 
+                print(name, value) 
+                if name == "BetterVisuals" then
+                    VisualsModel.Enabled = value
+                elseif name == "DayAndNightCycle" then
+                    CycleModel.Enabled = value
+                end
+            end
             return Funcs
         end
 
         Funcs.Settings = function(settings : SettingsData)
             Settings = settings
             for name, value in pairs(settings) do
-                
                 if name == "Seed" then
                     GlobalConfigs.Seed = value
                 elseif name == "InitYear" then
