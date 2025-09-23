@@ -11,10 +11,15 @@ local CalendarModel = require(script.Parent.Domains.Calendar["Calendar.Model"])
 local VisualsModel = require(script.Parent.Domains.Visuals["Visuals.Model"])
 local CycleModel = require(script.Parent.Domains.Cycle["Cycle.Model"])
 local CloudsManager = require(script.Parent.Manager["Clouds.Manager"])
+local Utils = require(script.Parent.Utils.Util)
 local RunService = game:GetService("RunService")
 local GlobalConfigs = require(script.Parent["Global.Configs"])
 ------------------ Variáveis ----------------
-local Settings = nil
+local Settings = {
+        LengthOfDayInMinutes = 30,
+        Seed = Utils.Random.Generate(),
+        InitYear = 2020
+    }
 ------------------ Funções ------------------
 
 type InitData = {Year : number?, Month : number?, Day : number?, Time : number?}
@@ -30,8 +35,9 @@ type SettingsData = {LengthOfDayInMinutes : number?, Seed : number?, InitYear : 
     @param Features() recebe quais Features estará habilitadas ou desabilitadas
     @param Settings() recebe um objeto que contém {Seed = sequência de numeros, InitYear = recebe um numero que sera adicionado ao Year para retornar algo como 2020 + Year, LengthOfDayInMinutes = duração em minutos do ciclo de dia e noite}
 ]]
-Main.Init = function(data : InitData)
-    local Data = data or nil
+Main.Init = function(data : InitData?)
+    local Data = data or {Day = 1, Month = 1, Year = 1, Time = 9}
+    print(Data)
     RemoteManager.Init()
     CycleManager.Init(Data)
     LoopManager.Init()
@@ -55,9 +61,9 @@ Main.Init = function(data : InitData)
             return Funcs
         end
 
-        Funcs.Settings = function(settings : SettingsData)
-            Settings = settings
-            for name, value in pairs(settings) do
+        Funcs.Settings = function(settings : SettingsData?)
+            Settings = settings or Settings
+            for name, value in pairs(Settings) do
                 if name == "Seed" then
                     GlobalConfigs.Seed = value
                 elseif name == "InitYear" then
