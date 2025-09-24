@@ -1,7 +1,7 @@
 ------------------- Inicio -------------------
 local CloudsController = {}
 ------------------- Requires -----------------
-local Clouds = game.Workspace.Terrain:WaitForChild("Clouds")
+local Clouds = nil
 local Utils = require(script.Parent.Parent.Parent.Utils.Util)
 local LoopManager = require(script.Parent.Parent.Parent.Manager["Loop.Manager"])
 local CloudsModel = require(script.Parent["Clouds.Model"])
@@ -18,7 +18,8 @@ local Secret = 1053
 ------------------- Funções ------------------
 
 CloudsController.Start = function()
-    local Density = CloudsModel.Density
+	local Density = CloudsModel.Density
+	Clouds = game.Workspace.Terrain:WaitForChild("Clouds")
     if Density <= 1 then
         CloudDensity(CloudsModel.OldDensity, CloudsModel.Clouds[1], Density)
     elseif Density > 1 and Density <= 2 then

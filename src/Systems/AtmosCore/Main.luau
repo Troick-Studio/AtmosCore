@@ -122,6 +122,7 @@ function VerifyAtmosphere()
     if not game.Lighting:FindFirstChild("ColorCorrection") then Instance.new("ColorCorrectionEffect", game.Lighting).Name = "ColorCorrection" end
     if not game.Lighting:FindFirstChild("ExtraConditionsCorrection") then Instance.new("ColorCorrectionEffect", game.Lighting).Name = "ExtraConditionsCorrection" end
     if not game.Lighting:FindFirstChild("TemperatureCorrection") then Instance.new("ColorCorrectionEffect", game.Lighting).Name = "TemperatureCorrection" end
+	if not game.Workspace.Terrain:FindFirstChild("Clouds") then Instance.new("Clouds", game.Workspace.Terrain).Name = "Clouds" end
 end
 
 ------------------- Eventos ------------------

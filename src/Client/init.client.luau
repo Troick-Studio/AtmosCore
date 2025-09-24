@@ -1,7 +1,7 @@
 local AtmosCore = require(game:GetService("ReplicatedStorage").Systems.AtmosCore.Main)
 local Player = game.Players.LocalPlayer
 local PlayerGui = Player:WaitForChild("PlayerGui")
-local GraphicsUI = PlayerGui:WaitForChild("GraphicsUI")
+local ExampleUI = PlayerGui:WaitForChild("ExampleUI")
 local CollectionService = game:GetService("CollectionService")
 local TweenService = game:GetService("TweenService")
 
@@ -38,10 +38,10 @@ AtmosCore.OnTimeChanged:Connect(function(Time)
     local minutes = Time % 60
 
     local timeString = string.format("%02d:%02d", hours, minutes)
-    GraphicsUI.Clock.Time.Text = timeString
+    ExampleUI.Clock.Time.Text = timeString
 end)
 
 AtmosCore.OnTemperatureChanged:Connect(function(Temperature)
     if not Temperature then return end
-    GraphicsUI.Clock.Temperature.Text = `°{Temperature}`
+    ExampleUI.Clock.Temperature.Text = `°{Temperature}`
 end)
