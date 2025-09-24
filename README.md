@@ -1,9 +1,13 @@
-# 🌌 AtmosCore (Alpha)
+
+<p align="center">
+  <img width="250" height="250" alt="AtmosCore Icone" src="https://github.com/user-attachments/assets/5bc6fc68-5c4b-4624-bb67-eaa3d64e2498" />
+</p>
+<h1 align="center">
+  <strong> AtmosCore (Alpha) </strong>
+</h1>
 
 **AtmosCore** é um sistema modular de ambiente para Roblox, **ainda em desenvolvimento**. Esta é apenas uma **alpha**, portanto muitos sistemas planejados ainda não foram implementados.  
 O objetivo é criar um núcleo atmosférico completo, altamente personalizável, que gerencie **clima, ciclo de dia/noite, calendário e eventos ambientais** de forma integrada.
-
----
 
 ## ⚠️ Status Atual (Alpha)
 
@@ -47,10 +51,7 @@ Em desenvolvimento, os seguintes sistemas e customizações serão adicionados:
   - Diferentes tipos de chuva e intensidade, tempestades com trovões, neve, etc.  
 
 - 🌫️ **Sub-climas**  
-  - Efeitos aleatórios como neblina, ventania e névoa, que podem ocorrer sobre qualquer clima.  
-
-- … e muito mais!  
-  - A ideia é que o sistema seja **modular e expansível**, permitindo novas integrações e ajustes facilmente.
+  - Efeitos aleatórios como neblina, ventania e névoa, que podem ocorrer sobre qualquer clima.
 
 ---
 
@@ -79,3 +80,10 @@ Este código é de **propriedade do Troick Studio**. Você tem permissão para *
 
 Seu feedback é muito importante!  
 Se você encontrar bugs, tiver sugestões ou quiser compartilhar experiências com o AtmosCore, sinta-se à vontade para abrir **issues** no GitHub ou entrar em contato com o **Troick Studio**.
+
+---
+
+
+<p align="center">
+  <img width="200" height="200" alt="Troick Studio Icon + Title" src="https://github.com/user-attachments/assets/727dcf3f-1d8e-4370-823e-51fec288d581" />
+</p>

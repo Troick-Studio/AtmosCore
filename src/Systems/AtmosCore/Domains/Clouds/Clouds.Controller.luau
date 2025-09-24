@@ -53,7 +53,6 @@ CloudsController.Dynamic = function()
             DynamicStart = true
         end
         
-
         local elapsed = CycleModel.Clock.MinutesAfterMidnight - StartTime
         if elapsed < 0 then elapsed = elapsed + 1440 end
                 

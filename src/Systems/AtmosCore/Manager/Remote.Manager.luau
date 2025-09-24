@@ -15,6 +15,8 @@ RemoteManager.Init = function()
     EventsManager.CreateEvents({ Name = "SyncDate", Type = "RemoteEvent" })
     EventsManager.CreateEvents({ Name = "ToggleTime", Type = "RemoteEvent" })
     EventsManager.CreateEvents({ Name = "ReSync", Type = "RemoteFunction" })
+    EventsManager.CreateEvents({ Name = "Command", Type = "RemoteFunction" })
+    EventsManager.CreateEvents({ Name = "ExecuteCommand", Type = "RemoteEvent" })
 
     if RunService:IsClient() then RemoteController.Init()
     else RemoteService.Init() end

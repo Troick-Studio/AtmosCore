@@ -3,11 +3,16 @@ local CycleModel = {}
 ------------------- Requires -----------------
 local EventsManager = require(script.Parent.Parent.Parent.Manager["Events.Manager"])
 local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
 ------------------ Variáveis -----------------
 
 CycleModel.Enabled = true
 CycleModel.NightTriggered = false
 CycleModel.MoonChange = false
+
+CycleModel.OnNight = Instance.new("BindableEvent")
+CycleModel.OnSunrise = Instance.new("BindableEvent")
+CycleModel.OnTimeChanged = Instance.new("BindableEvent") 
 
 CycleModel.Duration = {
 	LengthOfDayInMinutes = 1,
@@ -19,15 +24,13 @@ CycleModel.Clock = {
     MinutesAfterMidnight = 9.1 * 60, 
     Time = function()
         local Time = CycleModel.Clock.MinutesAfterMidnight / 60
-        local TimeFormat = {
-            Hours = math.floor(Time), 
-            Minutes = math.floor((Time - math.floor(Time)) * 60)
-        }
+        -- local TimeFormat = {
+        --     Hours = math.floor(Time), 
+        --     Minutes = math.floor((Time - math.floor(Time)) * 60)
+        -- }
         
-        return {
-            Raw = TimeFormat,
-            Format = string.format("%02d:%02d", TimeFormat.Hours, TimeFormat.Minutes)
-        }
+        return Time
+        -- return {Raw = TimeFormat, Format = string.format("%02d:%02d", TimeFormat.Hours, TimeFormat.Minutes)}
     end,
 }
 
@@ -38,8 +41,12 @@ CycleModel.CycleVariables = {
 }
 
 CycleModel.Commands = {
-    Set = function(CommandValue) 
-        CycleModel.Clock.MinutesAfterMidnight = CommandValue * 60
+    Set = function(CommandValue)
+        CycleModel.Clock.MinutesAfterMidnight = (CommandValue * 60)  % 1440
+        Lighting:SetMinutesAfterMidnight(CommandValue * 60)
+        CycleModel.OnTimeChanged:Fire(CycleModel.Clock.MinutesAfterMidnight)
+        if (CommandValue >= 18 and CommandValue <= 24) or (CommandValue >= 0 and CommandValue <= 6) then CycleModel.OnNight:Fire()
+        elseif CommandValue >= 6.5 and CommandValue <= 18 then CycleModel.OnSunrise:Fire() end
     end,
     ReSync = function(Player, Data)
         if RunService:IsClient() then

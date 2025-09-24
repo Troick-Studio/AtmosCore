@@ -9,9 +9,9 @@ local VisualsController = require(script.Parent.Parent.Visuals["Visuals.Controll
 local Lighting = game:GetService("Lighting")
 local Synced = false
 
-local OnNight = Instance.new("BindableEvent")
-local OnSunrise = Instance.new("BindableEvent")
-local OnTimeChanged = Instance.new("BindableEvent") 
+local OnNight = CycleModel.OnNight
+local OnSunrise = CycleModel.OnSunrise
+local OnTimeChanged = CycleModel.OnTimeChanged
 ------------------- Funções ------------------
 
 CycleController.Start = function()
@@ -30,7 +30,7 @@ CycleController.Sync = function(Data)
     Synced = true
 end
 
-function CycleDayAndNight()   
+function CycleDayAndNight()
     if Synced and CycleModel.Enabled then
         CycleModel.CycleVariables.Value = (CycleModel.Clock.MinutesAfterMidnight + 0.1 * CycleModel.CycleVariables.Speed)
         if CycleModel.CycleVariables.Value / 60 >= 24 then
@@ -52,9 +52,8 @@ function CycleDayAndNight()
         OnTimeChanged:Fire(CycleModel.CycleVariables.Value)
         Lighting:SetMinutesAfterMidnight(CycleModel.CycleVariables.Value)
         CycleModel.Clock.MinutesAfterMidnight = CycleModel.CycleVariables.Value
-
-        VisualsController.Start(CycleModel.Clock.MinutesAfterMidnight)
     end
+    VisualsController.Start(CycleModel.Clock.MinutesAfterMidnight)
 end
 
 CycleController.OnNight = OnNight.Event

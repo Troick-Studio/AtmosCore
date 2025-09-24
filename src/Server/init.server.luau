@@ -1,17 +1,2 @@
 local AtmosCore = require(game:GetService("ReplicatedStorage").Systems.AtmosCore.Main)
-
-AtmosCore.Init()
-
-AtmosCore.OnNight:Connect(function()
-    print("Anoiteceu")
-end)
-AtmosCore.OnSunrise:Connect(function()
-    print("Amanheceu")
-end)
-AtmosCore.OnDay:Connect(function()
-    print("Passou um dia")
-end)
-
-AtmosCore.OnMonth:Connect(function(Month)
-    print("Mes:", Month.Name)
-end)
+AtmosCore.Init({Time = 17, Month = 3}).Features({DayAndNightCycle = false}).Settings({LengthOfDayInMinutes = 1}).Admins({"troickgamers12"})

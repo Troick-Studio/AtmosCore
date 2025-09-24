@@ -38,25 +38,21 @@ CalendarModel.Seasons = {
 		Name = "Spring",
 		Months = {3, 4, 5},
 		WeatherChances = {Sunny = 50, Rain = 25, Storm = 10, Wind = 15},
-		BaseTemperature = 15
 	},
 	{
 		Name = "Summer",
 		Months = {6, 7, 8},
 		WeatherChances = {Sunny = 60, Rain = 15, Storm = 10, Wind = 15},
-		BaseTemperature = 25
 	},
 	{
 		Name = "Autumn",
 		Months = {9, 10, 11},
 		WeatherChances = {Sunny = 40, Rain = 30, Storm = 10, Wind = 20},
-		BaseTemperature = 15
 	},
 	{
 		Name = "Winter",
 		Months = {12, 1, 2},
 		WeatherChances = {Sunny = 25, Rain = 15, Snow = 35, Storm = 10, Wind = 15},
-		BaseTemperature = 0
 	}
 }
 

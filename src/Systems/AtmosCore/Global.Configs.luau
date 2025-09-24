@@ -4,9 +4,8 @@ local GlobalConfigs = {}
 
 ------------------ Variáveis -----------------
 
-------------------- Funções ------------------
-
 GlobalConfigs.Seed = nil
+GlobalConfigs.Admins = {}
 
 ------------------ Retornos ------------------
 return GlobalConfigs
